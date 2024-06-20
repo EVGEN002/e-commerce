@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+
+import { cn } from "@/lib/utils";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cn(
+          "bg-background font-sans flex flex-col min-h-dvh",
+          inter.className
+        )}
+      >
+        <Header className="flex-shrink-0"></Header>
+        <div className="container flex-1 pt-6 pb-14">{children}</div>
+        <Footer></Footer>
+      </body>
     </html>
   );
 }
